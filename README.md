@@ -37,7 +37,7 @@ jobs:
       - name: Generate SVG Diagrams
         uses: cloudbees/plantuml-github-action@master
         with:
-            args: -v -tsvg $UML_FILES
+            args: -v -tsvg *${{ env.UML_FILES }}
       - name: Get changed UML files
         id: getfile
         run: |
@@ -48,7 +48,8 @@ jobs:
       - name: Generate PNG Diagrams
         uses: cloudbees/plantuml-github-action@master
         with:
-            args: -v -tpng $UML_FILES
+            args: -v -tpng *${{ env.UML_FILES }}
+            
       - name: Push Local Changes
         uses:  stefanzweifel/git-auto-commit-action@v4.1.2 
         with: 
